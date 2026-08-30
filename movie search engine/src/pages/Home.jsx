@@ -1,6 +1,7 @@
 //user interface for the home page
 import MovieCard from "../components/MovieCard";
 import { useState } from "react";
+import "../css/Home.css";
 
 function Home() {
   const [searchQuery, setSearchQuery] = useState(""); //esto es para que se pueda renderizar bien cada vez que camnbiamos algo
