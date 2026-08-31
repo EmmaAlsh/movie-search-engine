@@ -1,4 +1,9 @@
 export default async (req) => {
+  const apiKey = process.env.TMDB_API_KEY;
+
+  console.log("TMDB_API_KEY existe:", !!apiKey);
+  console.log("TMDB_API_KEY length:", apiKey?.length);
+
   const { searchParams } = new URL(req.url);
 
   const query = searchParams.get("query");
