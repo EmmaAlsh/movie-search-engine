@@ -4,15 +4,10 @@ export default async (req) => {
   const query = searchParams.get("query");
 
   const endpoint = query
-    ? `https://api.themoviedb.org/3/search/movie?query=${encodeURIComponent(query)}`
-    : "https://api.themoviedb.org/3/movie/popular";
+    ? `https://api.themoviedb.org/3/search/movie?api_key=${process.env.TMDB_API_KEY}&query=${encodeURIComponent(query)}`
+    : `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.TMDB_API_KEY}`;
 
-  const response = await fetch(endpoint, {
-    headers: {
-      Authorization: `Bearer ${process.env.TMDB_API_KEY}`,
-      "Content-Type": "application/json",
-    },
-  });
+  const response = await fetch(endpoint);
 
   if (!response.ok) {
     return new Response(JSON.stringify({ error: "Error al consultar TMDB" }), {
