@@ -1,20 +1,18 @@
-const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
-console.log(import.meta.env);
+const BASE_URL = "/.netlify/functions/tmdb";
 
-console.log("API KEY:", API_KEY);
-const BASE_URL = "https://api.themoviedb.org/3";
-
-// getPopularMovies
 export const getPopularMovies = async () => {
-  const response = await fetch(`${BASE_URL}/movie/popular?api_key=${API_KEY}`);
+  const response = await fetch(BASE_URL);
   const data = await response.json();
+
   return data.results;
 };
 
 export const searchMovies = async (query) => {
   const response = await fetch(
-    `${BASE_URL}/search/movie?api_key=${API_KEY}&query=${encodeURIComponent(query)}`,
+    `${BASE_URL}?query=${encodeURIComponent(query)}`,
   );
+
   const data = await response.json();
+
   return data.results;
 };
